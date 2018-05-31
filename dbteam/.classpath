@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="G:/save/Overwatch/팟지/wwe/따봉/프로그램/마케팅/페북/이게진짜만드는거/스크랩/새롭게한다/티스토리/셀레니움/데베/데베프로젝트/mariadb-java-client-2.2.4.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

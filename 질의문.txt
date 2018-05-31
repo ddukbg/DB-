@@ -1,0 +1,50 @@
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('운전면허번호', '이름', '주소', '폰', '이메일', '이전캠핑카사용날짜', '캠핑카종류');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('캠핑카대여회사id,회사명,주소,전화번호,담당자이름,담당자이메일');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('정비소id','정비소명','정비소전화번호','담당자이름','담당자이메일');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('캠핑카등록ID','캠핑카대여회사ID','캠핑카등록일자','캠핑카이름','캠핑카차량정보','캠핑카승차인원수','캠핑카이미지','캠핑카상세정보','캠핑카대여비용');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('고유대여번호','운전면허증번호','캠핑카대여회사ID','캠핑카등록ID','대여시작일','대여기간','청구요금','납입기한','기타청구내역','기타청구요금');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('고유정비번호','캠핑카정비소id','운전면허증번호','캠핑카등록id','캠핑카대여회사id,'고객운전면허증정보','정비내역','수리날짜','수리비용','납입기한','기타정비내역');
+
+//캠핑카 종류를 입력받아 그 캠핑카를 빌린 사람의 정보만 출력한다.(여기선 캠핑카 아이디로함)
+select cusname,cusaddress,cusphone from customer, camprent
+where customer.cuslicense = camprent.camprentlicense
+and camprentaddid = '2';
+
+
+
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1111', '김수미', '경기도부천', '01011221122', 'sumi@na.com', '20170501', 'camp1');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1112', '김만덕', '부산광역시', '01088558855', 'man@man.com', '20150921', 'camp3');
+
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('1','samsong','경기도부천','0321112222','이건희','yee@samsong.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('2','hellg','경기도광주','0325452223','구본희','gu@hellg.kr');
+
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('1','한신정비소','0325545566','김한신','hansin@dak.bal');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('2','두신정비소','0312489999','김포천','pochon@gal.be');
+
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('1','1','20140101','샘성캠핑카1','캠핑카차량정보1','6','캠핑카이미지','캠핑카상세정보','200000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('2','1','20130101','샘성캠핑카2','캠핑카차량정보2','10','캠핑카이미지','캠핑카상세정보','250000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('3','2','20170101','헬지캠핑카1','캠핑카차량정보'3,'3','캠핑카이미지','캠핑카상세정보','240000');
+
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('1','1111','1','2','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('1','1112','2','1','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('1','1','1111','2','1,'고객운전면허증정보','정비내역','수리날짜','수리비용','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('2','2','1112','1','1,'고객운전면허증정보','정비내역','수리날짜','수리비용','납입기한','기타정비내역');
+
+//아래는 초기값설정필요할때
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1111', '김수미', '경기도부천', '01011221122', 'sumi@na.com', '20170501', '샘성캠핑카1');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1112', '김만덕', '부산광역시', '01088558855', 'man@man.com', '20150921', '샘성캠핑카2');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1113', '오승덕', '경기도수원', '01085675858', 'seung@na.com', '20150720', '샘성캠핑카3');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1114', '홍길동', '경기도양주', '01074748585', 'hong@na.com', '20141111', '샘성캠핑카4');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1115', '오감자', '경기도이천', '01154548888', 'oh@naver.com', '20120421', '샘성캠핑카5');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1116', '오우야, '서울강남', '01087992222', 'ohuya@oh.com', '20180421', '헬지캠핑카1');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1117', '김민수', '서울논현', '010555449999', 'minsu@nh.com', '20170504', '헬지캠핑카2');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1118', '권은지', '서울청담', '01012368854', 'gej@na.com', '20160417', '헬지캠핑카3');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1119', '송은섭', '서울고담', '01078943262', 'song@age.com', '20170303', '샘성캠핑카4');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1120', '송아지', '대구고담', '01099554422', 'cow@ba.by', '20170221', '샘성캠핑카6');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1121', '가아지', '제주도', '01049528953', 'gaage@gua.ze', '20170930', '샘성캠핑카7');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1122', '고라니', '울릉도', '01065952423', 'golani@ra.ni', '20160707', '헬지캠핑카4');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1123', '잭스', '독도', '01011226699', 'jax@lol.kr', '20180606', '헬지캠핑카5');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1124', '이즈리얼', '인천부평', '01098752489', 'ezreal@lol.kr', '20160425', '헬지캠핑카6');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1125', '한조', '인천중구', '01077546666', 'hanzo@over.wat', '20140230', '헬지캠핑카7');
+INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1126', '메르시', '인천주안', '01099898899', 'merci@over.wat', '20130709', '헬지캠핑카8');
