@@ -9,6 +9,19 @@ INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepair
 select cusname,cusaddress,cusphone from customer, camprent
 where customer.cuslicense = camprent.camprentlicense
 and camprentaddid = '2';
+//고객 정보와 캠핑카 정비소의 정보를 보여준다.
+select * from customer, campcarrepair;
+//개인별 총 대여 횟수를 수집하여 우수 고객을 보여준다. 미완
+select cusname,cusphone,count(*) from customer, camprent
+where customer.cuslicense = camprent.camprentlicense
+groub by camprent.camprentlicense
+//정비소 별 총 정비 횟수를 수집하여 우수 정비소를 보여준다.
+
+//캠핑카 종류를 입력받아 그 캠핑카를 빌린 사람의 정보만 출력한다.
+select cusname, cusaddress, cusphone from customer, campcarinfor
+where customer.cuscamptype = campcarinfor.campcarname and campcarinfor.campcarname = '샘성캠핑카1';
+
+//정비소 명을 입력받아 그 정비소의 정보를 출력한다.
 
 
 
@@ -31,7 +44,7 @@ INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camp
 INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('1','1','1111','2','1,'고객운전면허증정보','정비내역','수리날짜','수리비용','납입기한','기타정비내역');
 INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('2','2','1112','1','1,'고객운전면허증정보','정비내역','수리날짜','수리비용','납입기한','기타정비내역');
 
-//아래는 초기값설정필요할때
+//아래는 초기값설정필요할때 customer
 INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1111', '김수미', '경기도부천', '01011221122', 'sumi@na.com', '20170501', '샘성캠핑카1');
 INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1112', '김만덕', '부산광역시', '01088558855', 'man@man.com', '20150921', '샘성캠핑카2');
 INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1113', '오승덕', '경기도수원', '01085675858', 'seung@na.com', '20150720', '샘성캠핑카3');
@@ -48,3 +61,103 @@ INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp
 INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1124', '이즈리얼', '인천부평', '01098752489', 'ezreal@lol.kr', '20160425', '헬지캠핑카6');
 INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1125', '한조', '인천중구', '01077546666', 'hanzo@over.wat', '20140230', '헬지캠핑카7');
 INSERT INTO customer(cuslicense,cusname,cusaddress,cusphone,cusemail,cuslastcamp,cuscamptype) VALUES ('1126', '메르시', '인천주안', '01099898899', 'merci@over.wat', '20130709', '헬지캠핑카8');
+
+//campcarcompany 캠핑카회사
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('1','samsong','경기도부천','0321112222','이건희','yee@samsong.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('2','hellg','경기도광주','0325452223','구본희','gu@hellg.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('3','lenove','중국광저우','0325552211','장첸','jang@bumgae.city');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('4','sony','일본도쿄','0115452223','아베','abe@susi.good');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('5','cj','서울강남','025452223','시제이','cj@cj.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('6','kt','서울광화문','025222113','크트','kt@kt.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('7','og','서울논현','024444223','오지는','og@og.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('8','lg','대구구미','0513422211','구본히','lg@lg.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('9','kia','전남광주','0615452266','타이거','kia@kia.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('10','benz','서울강남','025446773','유투브','you@tube.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('11','dosan','서울잠실','025459988','베어스','dosan@bears.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('12','nc','서울잠실','025115223','공룡','nc@dino.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('13','naver','서울가산','025885523','더이상','naver@line.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('14','daum','서울구로','0251111223','그다음','daum@daum.kr');
+INSERT INTO campcarcompany(camccomid,camccomname,camccomaddress,camccomphone,camccomadmin,camccomadmail) VALUES('15','nate','제주도','0013332222','사이월드','nate@mang.kr');
+
+//campcarrepair 정비소정보
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('1','한신정비소','0325545566','김한신','hansin@dak.bal');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('2','두신정비소','0312489999','김포천','pochon@gal.be');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('3','세신정비소','0313333333','세발','3foot@3foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('4','네신정비소','02489999','네발','4foot@4foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('5','오신정비소','0312412349','다섯발','5foot@5foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('6','육신정비소','0312555999','여섯발','6foot@6foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('7','칠신정비소','0312455566','일곱발','7foot@7foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('8','팔신정비소','0312489233','여덟발','8foot@8foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('9','구신정비소','0248999912','아홉발','9foot@9foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('10','십신정비소','0322482222','열발천','10foot@10foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('11','십일정비소','0324444444','열한천','11foot@11foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('12','십이정비소','0321231111','열두천','12foot@12foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('13','십삼정비소','0325555555','열셋천','13foot@13foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('14','십사정비소','0323334566','열넷천','14foot@14foot.com');
+INSERT INTO campcarrepair(campcarreid,campcarreaddress,campcarrephone,campcarreadmin,campcarreadmail) VALUES('15','십오정비소','0319999999','열다천','15foot@15foot.com');
+
+
+//캠핑카정보
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('1','1','20140101','샘성캠핑카1','캠핑카차량정보1','6','캠핑카이미지','캠핑카상세정보','200000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('2','1','20130101','샘성캠핑카2','캠핑카차량정보2','10','캠핑카이미지','캠핑카상세정보','250000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('3','2','20130101','헬지캠핑카1','캠핑카차량정보'3,'3','캠핑카이미지','캠핑카상세정보','240000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('4','3','20130101','레노버캠핑카','캠핑카차량정보1','6','캠핑카이미지','캠핑카상세정보','200000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('5','4','20140101','소니캠핑카','캠핑카차량정보2','10','캠핑카이미지','캠핑카상세정보','250000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('6','5','20130101','cj캠핑카','캠핑카차량정보'3,'3','캠핑카이미지','캠핑카상세정보','240000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('7','6','20140101','kt캠핑카','캠핑카차량정보1','6','캠핑카이미지','캠핑카상세정보','200000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('8','7','20130101','og캠핑카','캠핑카차량정보2','10','캠핑카이미지','캠핑카상세정보','250000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('9','8','20140101','lg캠핑카','캠핑카차량정보'3,'3','캠핑카이미지','캠핑카상세정보','240000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('10','9','20150101','kia캠핑카','캠핑카차량정보1','6','캠핑카이미지','캠핑카상세정보','200000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('11','10','20160101','benz캠핑카','캠핑카차량정보2','10','캠핑카이미지','캠핑카상세정보','250000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('12','11','20110101','두산캠핑카','캠핑카차량정보'3,'3','캠핑카이미지','캠핑카상세정보','240000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('13','12','20120101','nc캠핑카','캠핑카차량정보1','6','캠핑카이미지','캠핑카상세정보','200000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('14','13','20130311','네이버캠핑카','캠핑카차량정보2','10','캠핑카이미지','캠핑카상세정보','250000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('15','14','20140721','다음캠핑카','캠핑카차량정보'3,'3','캠핑카이미지','캠핑카상세정보','240000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('16','15','20150111','네이트캠핑카','캠핑카차량정보1','6','캠핑카이미지','캠핑카상세정보','200000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('17','2','20160401','헬지캠핑카2','캠핑카차량정보2','10','캠핑카이미지','캠핑카상세정보','250000');
+INSERT INTO campcarinfor(campcaraddid,campcarcomid,campcardate,campcarname,campcarinform,campcarpeople,campcarimg,campcarsang,campcarpay) VALUES('18','2','20170101','헬지캠핑카3','캠핑카차량정보'3,'3','캠핑카이미지','캠핑카상세정보','240000');
+
+//대여내역
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('1','1111','1','2','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('2','1112','2','3','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('3','1113','3','4','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('4','1114','4','5','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('5','1115','5','6','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('6','1116','6','7','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('7','1117','7','8','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('8','1118','8','9','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('9','1119','9','10','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('10','1120','10','11','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('11','1121','11','12','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('12','1122','12','13','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('13','1123','13','14','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('14','1124','14','15','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('15','1125','15','16','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('16','1126','1','1','20170421','7','250000','20170501','기타청구내역','기타청구요금');
+INSERT INTO camprent(camprentid,camprentlicense,camprentcomid,camprentaddid,camprentstart,camprentdate,camprentpay,camprentend,camprentetc,camprentetcpay) VALUES('17','1111','2','17','20170620','3','200000','20180404','기타청구내역','기타청구요금');
+
+//정비내역
+
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('고유정비번호','캠핑카정비소id','운전면허증번호','캠핑카등록id','캠핑카대여회사id,'고객운전면허증정보','정비내역','수리날짜','수리비용','납입기한','기타정비내역');
+
+
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('1','1','1111','2','1,'고객운전면허증정보','수리','20170504','300000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('2','2','1112','3','2,'고객운전면허증정보','수리','20180409','300000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('3','3','1113','4','3,'고객운전면허증정보','타이어펑크','20170509,'200000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('4','4','1114','5','4,'고객운전면허증정보','오일교체','20180421','100000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('5','5','1115','6','5,'고객운전면허증정보','오일교체','20170512','100000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('6','6','1116','7','6,'고객운전면허증정보','정비','20180412','50000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('7','7','1117','8','7,'고객운전면허증정보','오일교체','20170509','100000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('8','8','1118','9','8,'고객운전면허증정보','오일교체','20180421','100000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('9','9','1119','10','9,'고객운전면허증정보','세차','20170513','30000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('10','10','1120','11','10,'고객운전면허증정보','타이어펑크','20180422','200000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('11','11','1121','12','11,'고객운전면허증정보','엔진고장','20170530','400000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('12','12','1122','13','12,'고객운전면허증정보','엔진고장','20180420','400000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('13','13','1123','14','13,'고객운전면허증정보','핸들교체','20170511','150000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('14','14','1124','15','14,'고객운전면허증정보','마후라교체','20170505','40000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('15','15','1111','17','2,'고객운전면허증정보','라디오교체','20180420','120000','납입기한','기타정비내역');
+INSERT INTO camprepair(camprepairid,camprepaircenid,camprepairlicense,camprepairaddid,camprepaircomid,camprepairlicinf,camprepaircont,camprepairdate,camprepairpay,camprepairend,camprepairetc) VALUES('16','16','1112','3','2,'고객운전면허증정보','네비장착','20180428','130000','납입기한','기타정비내역');
+
+
+
+
